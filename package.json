@@ -1,0 +1,15 @@
+{
+  "name": "dash.org-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=development node Server.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.4.7",
+    "memcached": "^2.2.2",
+    "express": "^4.13.3",
+    "request": "^2.60.0",
+    "async": "^2.0.0"
+  }
+}
