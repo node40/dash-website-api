@@ -1,7 +1,9 @@
 var request   = require('request');
 var AppConfig = require('../AppConfig');
 var Cache     = require('./CacheRepository');
+var Logger    = require('log');
 
+var log = new Logger(AppConfig.logLevel)
 
 var fetchData = function(source, url, callback){
 
@@ -29,7 +31,11 @@ var fetchLatestBlocks = function(callback){
 			
 			if ( data === undefined ){
 
+				log.debug('Latest blocks not found in cache.')
+
 				var url = AppConfig.chain.insight.url + '?limit=' + AppConfig.chain.insight.maxBlocks;
+
+				log.debug('Fetching latest blocks from ' + url);
 
 				fetchData(AppConfig.chain.insight.name, url, function(err, results){
 					if ( err ){
@@ -40,6 +46,7 @@ var fetchLatestBlocks = function(callback){
 					}
 				});
 			}else{
+				log.debug('Using latest blocks found in cache.')
 				callback(null, data);
 			}
 		}

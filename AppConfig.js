@@ -42,6 +42,7 @@ var config = {
       name: 'dash.org-api'
     },
     port: process.env.PORT || 9090,
+    logLevel: 'DEBUG' // EMERGENCY|ALERT|CRITICAL|ERROR|WARNING|NOTICE|INFO|DEBUG
   },
 
   test: {

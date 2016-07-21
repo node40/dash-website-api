@@ -1,6 +1,9 @@
 var request   = require('request');
 var AppConfig = require('../AppConfig');
 var Cache     = require('./CacheRepository');
+var Logger    = require('log');
+
+var log = new Logger(AppConfig.logLevel);
 
 var fetchBudgetsData = function(budgetSource, url, callback){
 
@@ -29,6 +32,8 @@ var fetchDashBudgetsData = function(callback){
 		}else{
 
 			if ( data === undefined ){
+				log.debug('Budgets not found in cache.');
+				log.debug('Fetching budgets from ' + AppConfig.budgets.dashwhale.name + ' at ' + AppConfig.budgets.dashwhale.url);
 				fetchBudgetsData(AppConfig.budgets.dashwhale.name, AppConfig.budgets.dashwhale.url,function(err, results){
 					if ( !err ){
 						Cache.storeBudgetsData(results);
@@ -36,6 +41,7 @@ var fetchDashBudgetsData = function(callback){
 					callback(err,results);
 				});
 			}else{
+				log.debug('Using Budgets found in cache.');
 				callback(null, data);
 			}
 		}

@@ -2,6 +2,10 @@ var request    = require('request');
 var Async      = require('async');
 var AppConfig  = require('../AppConfig');
 var Cache      = require('./CacheRepository');
+var Logger     = require('log');
+
+var log = new Logger(AppConfig.logLevel);
+
 
 var fetchExchangeData = function(exchange, url, callback){
 	request.get(url, function (err, response, body) {
@@ -20,6 +24,7 @@ var fetchExchangeData = function(exchange, url, callback){
 };
 
 var fetchFromCoinCap = function(callback){
+	log.debug('Fetching exchange data from ' + AppConfig.exchanges.coincap.name + ' at ' + AppConfig.exchanges.coincap.url);
 	fetchExchangeData(AppConfig.exchanges.coincap.name, AppConfig.exchanges.coincap.url, function(err, result){
 		if ( err ){
 			callback(err);
@@ -39,6 +44,8 @@ var fetchFromCoinCap = function(callback){
 var fetchFromWorldCoinIndex = function(callback){
 
 	var url = AppConfig.exchanges.worldcoin.url + '?key=' + AppConfig.exchanges.worldcoin.apiKey
+
+	log.debug('Fetching exchange data from ' + AppConfig.exchanges.worldcoin.name + ' at ' + url);
 
 	fetchExchangeData(AppConfig.exchanges.worldcoin.name, url, function(err, result){
 		if ( err ){
@@ -73,7 +80,9 @@ var fetchAll = function(callback){
 		}else{
 			
 			if ( data === undefined ){
-			
+
+				log.debug('Latest exchange data not found in cache.');
+
 				callstack.push(fetchFromWorldCoinIndex);
 				callstack.push(fetchFromCoinCap);
 
@@ -83,6 +92,7 @@ var fetchAll = function(callback){
 				});
 
 			}else{
+				log.debug('Using exchange data found in cache.');
 				callback(null,data);
 			}
 		}

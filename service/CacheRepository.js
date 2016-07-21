@@ -1,15 +1,16 @@
-var Memcached = require('memcached');
-var AppConfig    = require('../AppConfig');
-var CacheConfig    = require('../CacheConfig');
+var Memcached   = require('memcached');
+var AppConfig   = require('../AppConfig');
+var CacheConfig = require('../CacheConfig');
+var Logger      = require('log');
 
-
+var log = new Logger(AppConfig.logLevel);
 
 var getCache = function(){
 	return global.cacheConnection;
 };
 
 var connect = function(){
-	return new Memcached(CacheConfig.endpoint);
+	return global.cacheConnection === undefined ? new Memcached(CacheConfig.endpoint) : global.cacheConnection;
 };
 
 var getExchangeData = function(callback){
@@ -17,10 +18,11 @@ var getExchangeData = function(callback){
 }
 
 var storeExchangeData = function(data){
+	log.debug('Storing exchange data in cache.');
 	getCache().set(CacheConfig.exchange.key, data, CacheConfig.exchange.timeout_seconds,
 		function(err){
 			if ( err ){
-				console.log(err);
+				log.error(err);
 			}
 		});
 };
@@ -30,11 +32,11 @@ var getBudgetsData = function(callback){
 };
 
 var storeBudgetsData = function(data){
-	console.log('Storing budgets data now.');
+	log.debug('Storing budgets data in cache.');
 	getCache().set(CacheConfig.budgets.key, data, CacheConfig.budgets.timeout_seconds,
 		function(err){
 			if ( err ){
-				console.log(err);
+				log.error(err);
 			}
 		});
 };
@@ -44,11 +46,11 @@ var getMasternodeHistory = function(callback){
 };
 
 var storeMasternodeHistory = function(data){
-	console.log('Storing masternode history data now.');
+	log.debug('Storing masternode history data in cache.');
 	getCache().set(CacheConfig.masternodes.history.key, data, CacheConfig.masternodes.history.timeout_seconds,
 		function(err){
 			if ( err ){
-				console.log(err);
+				log.error(err);
 			}
 		});
 };
@@ -58,11 +60,11 @@ var getLatestBlocks = function(callback){
 };
 
 var storeLatestBlocks = function(data){
-	console.log('Storing latest blocks now.');
+	log.debug('Storing latest blocks data in cache.');
 	getCache().set(CacheConfig.chain.blocks.key, data, CacheConfig.chain.blocks.timeout_seconds,
 		function(err){
 			if ( err ){
-				console.log(err);
+				log.error(err);
 			}
 		});
 };
@@ -72,11 +74,11 @@ var getMasternodeStats = function(callback){
 };
 
 var storeMasternodeStats = function(data){
-	console.log('Storing latest blocks now.');
+	log.debug('Storing masternode stats data in cache.');
 	getCache().set(CacheConfig.masternodes.stats.key, data, CacheConfig.masternodes.stats.timeout_seconds,
 		function(err){
 			if ( err ){
-				console.log(err);
+				log.error(err);
 			}
 		});
 };
