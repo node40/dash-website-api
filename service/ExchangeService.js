@@ -1,7 +1,7 @@
-var request = require('request');
-var Async   = require('async');
-var Config  = require('../Config');
-var Cache   = require('./CacheRepository');
+var request    = require('request');
+var Async      = require('async');
+var AppConfig  = require('../AppConfig');
+var Cache      = require('./CacheRepository');
 
 var fetchExchangeData = function(exchange, url, callback){
 	request.get(url, function (err, response, body) {
@@ -20,13 +20,13 @@ var fetchExchangeData = function(exchange, url, callback){
 };
 
 var fetchFromCoinCap = function(callback){
-	fetchExchangeData(Config.exchanges.coincap.name, Config.exchanges.coincap.url, function(err, result){
+	fetchExchangeData(AppConfig.exchanges.coincap.name, AppConfig.exchanges.coincap.url, function(err, result){
 		if ( err ){
 			callback(err);
 		}else{
 			var data = {
-				exchange: Config.exchanges.coincap.name,
-				url: Config.exchanges.coincap.orgUrl,
+				exchange: AppConfig.exchanges.coincap.name,
+				url: AppConfig.exchanges.coincap.orgUrl,
 				price: result[0].price_usd,
 				volume: result[0]['24h_volume_usd'],
 				percent_change: result[0].percent_change_24h
@@ -38,9 +38,9 @@ var fetchFromCoinCap = function(callback){
 
 var fetchFromWorldCoinIndex = function(callback){
 
-	var url = Config.exchanges.worldcoin.url + '?key=' + Config.exchanges.worldcoin.apiKey
+	var url = AppConfig.exchanges.worldcoin.url + '?key=' + AppConfig.exchanges.worldcoin.apiKey
 
-	fetchExchangeData(Config.exchanges.worldcoin.name, url, function(err, result){
+	fetchExchangeData(AppConfig.exchanges.worldcoin.name, url, function(err, result){
 		if ( err ){
 			callback(err);
 		}else{
@@ -49,8 +49,8 @@ var fetchFromWorldCoinIndex = function(callback){
 		    });
 		    if ( dashResults ){
 		    	var data = {
-		    		exchange: Config.exchanges.worldcoin.name,
-					url: Config.exchanges.worldcoin.orgUrl,
+		    		exchange: AppConfig.exchanges.worldcoin.name,
+					url: AppConfig.exchanges.worldcoin.orgUrl,
 					price: dashResults.Price_usd,
 					volume: dashResults.Volume_24h,
 					percent_change: -1

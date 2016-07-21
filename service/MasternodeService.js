@@ -1,6 +1,6 @@
-var request = require('request');
-var Config  = require('../Config');
-var Cache   = require('./CacheRepository');
+var request    = require('request');
+var AppConfig  = require('../AppConfig');
+var Cache      = require('./CacheRepository');
 
 
 var fetchData = function(source, url, callback){
@@ -28,7 +28,7 @@ var fetchMasternodeHistory = function(callback){
 		}else{
 			
 			if ( data === undefined ){
-				fetchData(Config.masternodes.node40.name, Config.masternodes.node40.historyUrl, function(err, results){
+				fetchData(AppConfig.masternodes.node40.name, AppConfig.masternodes.node40.historyUrl, function(err, results){
 					if ( err ){
 						callback(err,results);
 					}else{
@@ -51,7 +51,7 @@ var fetchMasternodeStats = function(callback){
 		}else{
 			
 			if ( data === undefined ){
-				fetchData(Config.masternodes.node40.name, Config.masternodes.node40.statsUrl, function(err, results){
+				fetchData(AppConfig.masternodes.node40.name, AppConfig.masternodes.node40.statsUrl, function(err, results){
 					if ( err ){
 						callback(err,results);
 					}else{

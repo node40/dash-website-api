@@ -3,7 +3,7 @@ var app          = express();
 var AWS          = require('aws-sdk');
 var Exchange     = require('./service/ExchangeService');
 var Budget       = require('./service/BudgetService');
-var Config       = require('./Config');
+var AppConfig    = require('./AppConfig');
 var Cache        = require('./service/CacheRepository');
 var Masternode   = require('./service/MasternodeService');
 var Blockchain   = require('./service/BlockchainService');
@@ -67,33 +67,9 @@ app.get('/exchange', function(req,res){
 
 });
 
-app.get('/exchange/coincap', function(req,res){
-	
-	Exchange.fetchFromCoinCap(function(err,result){
-		if ( err ){
-			res.send(err);
-		}else{
-			res.send(result);
-		}
-	});
-
-});
-
-app.get('/exchange/worldcoin', function(req,res){
-	
-	Exchange.fetchFromWorldCoinIndex(function(err,result){
-		if ( err ){
-			res.send(err);
-		}else{
-			res.send(result);
-		}
-	});
-
-});
-
 global.cacheConnection = Cache.connect();
 
-var server = app.listen(Config.port, function () {
+var server = app.listen(AppConfig.port, function () {
 
 	var host = server.address().address;
 	var port = server.address().port;

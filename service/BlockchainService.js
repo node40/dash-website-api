@@ -1,6 +1,6 @@
-var request = require('request');
-var Config  = require('../Config');
-var Cache   = require('./CacheRepository');
+var request   = require('request');
+var AppConfig = require('../AppConfig');
+var Cache     = require('./CacheRepository');
 
 
 var fetchData = function(source, url, callback){
@@ -29,9 +29,9 @@ var fetchLatestBlocks = function(callback){
 			
 			if ( data === undefined ){
 
-				var url = Config.chain.insight.url + '?limit=' + Config.chain.insight.maxBlocks;
+				var url = AppConfig.chain.insight.url + '?limit=' + AppConfig.chain.insight.maxBlocks;
 
-				fetchData(Config.chain.insight.name, url, function(err, results){
+				fetchData(AppConfig.chain.insight.name, url, function(err, results){
 					if ( err ){
 						callback(err,results);
 					}else{

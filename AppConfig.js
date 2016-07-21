@@ -42,10 +42,6 @@ var config = {
       name: 'dash.org-api'
     },
     port: process.env.PORT || 9090,
-    cache: {
-      endpoint: '127.0.0.1:11211',
-      autodiscovery: false
-    }
   },
 
   test: {
@@ -53,11 +49,7 @@ var config = {
     app: {
       name: 'dash.org-api'
     },
-    port: process.env.PORT || 9090,
-    cache: {
-      endpoint: 'http://localhost:11211',
-      autodiscovery: false
-    }
+    port: process.env.PORT || 9090
   },
 
   production: {
@@ -65,11 +57,7 @@ var config = {
     app: {
       name: 'dash.org-api'
     },
-    port: process.env.PORT || 9090,
-    cache: {
-      endpoint: 'http://localhost:11211',
-      autodiscovery: false
-    }
+    port: process.env.PORT || 9090
   }
 };
 

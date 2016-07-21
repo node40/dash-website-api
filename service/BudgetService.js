@@ -1,6 +1,6 @@
-var request = require('request');
-var Config  = require('../Config');
-var Cache   = require('./CacheRepository');
+var request   = require('request');
+var AppConfig = require('../AppConfig');
+var Cache     = require('./CacheRepository');
 
 var fetchBudgetsData = function(budgetSource, url, callback){
 
@@ -29,7 +29,7 @@ var fetchDashBudgetsData = function(callback){
 		}else{
 
 			if ( data === undefined ){
-				fetchBudgetsData(Config.budgets.dashwhale.name, Config.budgets.dashwhale.url,function(err, results){
+				fetchBudgetsData(AppConfig.budgets.dashwhale.name, AppConfig.budgets.dashwhale.url,function(err, results){
 					if ( !err ){
 						Cache.storeBudgetsData(results);
 					}
