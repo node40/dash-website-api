@@ -26,8 +26,8 @@ var config = {
     masternodes: {
       node40: {
         name: 'Node40',
-        historyUrl: 'http://localhost:8080/monitor/api/masterNode/history',
-        statsUrl: 'http://localhost:8080/monitor/api/masterNode/stats'
+        historyUrl: 'https://node40.com/monitor/api/masterNode/history',
+        statsUrl: 'https://node40.com/monitor/api/masterNode/stats'
       }
     },
     chain: {
