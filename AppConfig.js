@@ -26,6 +26,8 @@ var config = {
     masternodes: {
       node40: {
         name: 'Node40',
+        apiKey: 'foo',
+        apiKeyHeader: 'X-Api-Key',
         historyUrl: 'https://node40.com/monitor/api/masterNode/history',
         statsUrl: 'https://node40.com/monitor/api/masterNode/stats'
       }

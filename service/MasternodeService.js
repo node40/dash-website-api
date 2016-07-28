@@ -8,10 +8,20 @@ var log = new Logger(AppConfig.logLevel);
 
 var fetchData = function(source, url, callback){
 
-	request.get(url, function (err, response, body) {
+	var requestOptions = {
+		url: url,
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		}
+	};
+
+	requestOptions['headers'][AppConfig.masternodes.node40.apiKeyHeader] = AppConfig.masternodes.node40.apiKey;
+
+	request(requestOptions, function (err, response, body) {
 		if ( !err && response.statusCode == 200 ){
 			try {
-	            callback(null, JSON.parse(body));
+	            return callback(null, JSON.parse(body));
 	        }catch (e) {
 	            return callback('ERROR parsing response from ' + source + '. Details: ' + e + '\nResponse::' + body);
 	        }
