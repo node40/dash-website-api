@@ -16,7 +16,7 @@ var fetchExchangeData = function(exchange, url, callback){
 	            return callback('ERROR parsing response from ' + exchange + '. Details: ' + e + '\nResponse::' + body);
 	        }
 		}else if ( err ){
-            return callback('ERROR: fetching data from ' + exchange + ' (' + url + ') Details: ' + err, null);
+            return callback('ERROR: fetching data from ' + exchange + ' (' + url + ') Details: ' + err + '. BODY=' + body, null);
         }else{
         	return callback('ERROR: unexpected response code (' + response.statusCode + ') from url=[' + url + '] Details: ' + body);
         }
