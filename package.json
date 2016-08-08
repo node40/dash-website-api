@@ -1,9 +1,17 @@
 {
   "name": "dash.org-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
+  "description": "Dash.org Website API",
+  "main": "Server.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development node Server.js"
+  },
+  "author": "sean@node40.com",
+  "license": "MIT",
+  "engines": {
+    "node": "4.1.2"
   },
   "dependencies": {
     "aws-sdk": "^2.4.7",
