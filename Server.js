@@ -7,6 +7,13 @@ var AppConfig    = require('./AppConfig');
 var Cache        = require('./service/CacheRepository');
 var Masternode   = require('./service/MasternodeService');
 var Blockchain   = require('./service/BlockchainService');
+var Email = require('./service/EmailService');
+var bodyParser = require('body-parser')
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+	extended: true
+}));
 
 // Add headers
 app.use(function (req, res, next) {
@@ -84,6 +91,13 @@ app.get('/exchange', function(req,res){
 			res.send(result);
 		}
 	});
+
+});
+
+app.post('/send-contact-email', function(req,res){
+
+	var results = Email.sendMail(AppConfig.email.contactEmailAddress,req.body.subject, req.body.message);
+	res.send(results);
 
 });
 
