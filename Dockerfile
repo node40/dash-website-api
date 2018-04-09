@@ -1,4 +1,4 @@
-FROM node:6-alpine
+FROM node:9-alpine
 LABEL maintainer="Dash Developers <evodevs@dash.org>"
 LABEL description="Dockerised Dash.org Rate Etc API"
 
