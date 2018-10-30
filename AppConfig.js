@@ -24,7 +24,9 @@ var config = {
       kraken: {
         name: 'Kraken',
         orgUrl: 'https://www.kraken.com/',
-        url: 'https://api.kraken.com/0/public/Ticker?pair=DASHUSD'
+        url: 'https://api.kraken.com/0/public/Ticker?pair=DASHUSD',
+        urlEur: 'https://api.kraken.com/0/public/Ticker?pair=DASHEUR',
+        urlBTC: 'https://api.kraken.com/0/public/Ticker?pair=DASHXBT'
       },
       poloniex: {
         name: 'Poloniex',
@@ -34,17 +36,20 @@ var config = {
       bittrex: {
         name: 'Bittrex',
         orgUrl: 'https://bittrex.com/',
-        url: 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-dash'
+        url: 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-dash',
+        urlEth: 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=ETH-dash'
       },
       bitfinex: {
         name: 'Bitfinex',
         orgUrl: 'https://www.bitfinex.com/',
-        url: 'https://api.bitfinex.com/v1/pubticker/dshusd'
+        url: 'https://api.bitfinex.com/v1/pubticker/dshusd',
+        urlBTC: 'https://api.bitfinex.com/v1/pubticker/dshbtc'
       },
       hitbtc: {
         name: 'Hitbtc',
         orgUrl: 'https://hitbtc.com/',
-        url: 'https://api.hitbtc.com/api/1/public/DASHUSD/ticker'
+        url: 'https://api.hitbtc.com/api/1/public/DASHUSD/ticker',
+        urlBTC: 'https://api.hitbtc.com/api/1/public/DASHBTC/ticker'
       },
       bithumb: {
         name: 'Bithumb',
@@ -54,7 +59,8 @@ var config = {
       livecoin: {
         name: 'Livecoin',
         orgUrl: 'https://www.livecoin.net',
-        url: 'https://api.livecoin.net/exchange/ticker?currencyPair=DASH/USD'
+        url: 'https://api.livecoin.net/exchange/ticker?currencyPair=DASH/USD',
+        urlBTC: 'https://api.livecoin.net/exchange/ticker?currencyPair=DASH/BTC',
       },
       exmo: {
         name: 'Exmo',
@@ -64,23 +70,48 @@ var config = {
       yobit: {
         name: 'Yobit',
         orgUrl: 'https://yobit.net/',
-        url: 'https://yobit.net/api/3/ticker/dash_usd'
+        url: 'https://yobit.net/api/3/ticker/dash_usd',
+        urlBTC: 'https://yobit.net/api/3/ticker/dash_btc',
+        urlRur: 'https://yobit.net/api/3/ticker/dash_rur'
       },
       ccex: {
         name: 'C-cex',
         orgUrl: 'https://c-cex.com/',
-        url: 'https://c-cex.com/t/dash-usd.json'
+        url: 'https://c-cex.com/t/dash-usd.json',
+        urlBTC: 'https://c-cex.com/t/dash-btc.json'
       },
-      yahoofinance: {
-        name: 'Yahoo',
-        orgUrl: 'https://www.yahoo.com/',
-        url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KRWUSD%22)&format=json&env=store://datatables.org/alltableswithkeys&callback='
+      cexio: {
+        name: 'Cex.io',
+        orgUrl: 'https://cex.io/',
+        url: 'https://cex.io/api/last_price/DASH/USD',
+        urlBTC: 'https://cex.io/api/last_price/DASH/BTC',
+        urlEur: 'https://cex.io/api/last_price/DASH/EUR'
+      },
+      binance: {
+        name: 'Binance',
+        orgUrl: 'https://www.binance.com/',
+        url: 'https://api.binance.com/api/v3/ticker/price'
+      },
+      coinroom: {
+        name: 'Coinroom',
+        orgUrl: 'https://coinroom.com/',
+        url: 'https://coinroom.com/api/ticker/DASH/USD'
+      },
+      huobi: {
+        name: 'Huobi',
+        orgUrl: 'https://www.huobi.pro/',
+        url: 'https://api.huobi.pro/market/trade?symbol=dashbtc'
+      },
+      CurrencyConverterApi: {
+        name: 'CurrencyConverterApi',
+        orgUrl: 'https://free.currencyconverterapi.com/',
+        url: 'https://free.currencyconverterapi.com/api/v5/convert?q=KRW_USD&compact=y'
       }
     },
     budgets: {
-      dashwhale: {
-        name: 'DashWhale',
-        url: 'https://www.dashwhale.org/api/v1/budget'
+      dashCentral: {
+        name: 'DashCentral',
+        url: 'https://www.dashcentral.org/api/v1/budget'
       }
     },
     masternodes: {
@@ -95,7 +126,7 @@ var config = {
     chain: {
       insight: {
         name: 'Insight',
-        url: 'https://insight.dash.siampm.com/api/blocks',
+        url: 'https://insight.dashevo.org/insight-api-dash/blocks',
         maxBlocks: 10
       }
     },
